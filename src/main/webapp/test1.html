@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+
+<!--
+Project name(项目名称)：Element_UI_DateTimePicker
+  File name(文件名): test1
+  Authors(作者）: mao
+  Author QQ：1296193245
+  GitHub：https://github.com/maomao124/
+  Date(创建日期)： 2022/4/29
+  Time(创建时间)： 22:51
+  Description(描述)： 无
+-->
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/element-ui.css">
+    <script src="js/vue.js"></script>
+    <script src="js/element-ui.js"></script>
+</head>
+<body>
+
+
+<div id="app">
+    <el-date-picker
+            type="datetime"
+            v-model="value1"
+            placeholder="选择日期和时间"
+            @change="change(value1)">
+    </el-date-picker>
+    <el-date-picker
+            type="datetime"
+            v-model="value2"
+            placeholder="选择日期和时间"
+            :picker-options="pickerOptions"
+            @change="change(value2)">
+    </el-date-picker>
+    <el-date-picker
+            type="datetime"
+            v-model="value3"
+            placeholder="选择日期和时间"
+            :picker-options="pickerOptions"
+            @change="change(value3)">
+    </el-date-picker>
+    <el-date-picker
+            type="datetime"
+            v-model="value4"
+            placeholder="选择日期和时间"
+            :picker-options="pickerOptions"
+            default-time="18:30:00"
+            @change="change(value4)">
+    </el-date-picker>
+</div>
+
+<script>
+    var app = new Vue({
+        el: "#app",
+        data: {
+            value1: "",
+            value2: "",
+            value3: new Date(),
+            value4: "",
+            pickerOptions:
+                {
+                    shortcuts:
+                        [
+                            {
+                                text: '今天',
+                                onClick(picker)
+                                {
+                                    picker.$emit('pick', new Date());
+                                }
+                            },
+                            {
+                                text: '昨天',
+                                onClick(picker)
+                                {
+                                    const date = new Date();
+                                    date.setTime(date.getTime() - 3600 * 1000 * 24);
+                                    picker.$emit('pick', date);
+                                }
+                            },
+                            {
+                                text: '一周前',
+                                onClick(picker)
+                                {
+                                    const date = new Date();
+                                    date.setTime(date.getTime() - 3600 * 1000 * 24 * 7);
+                                    picker.$emit('pick', date);
+                                }
+                            },
+                            {
+                                text: '一个月前',
+                                onClick(picker)
+                                {
+                                    const date = new Date();
+                                    date.setMonth(date.getMonth() - 1);
+                                    picker.$emit('pick', date);
+                                }
+                            },
+                            {
+                                text: '两个月前',
+                                onClick(picker)
+                                {
+                                    const date = new Date();
+                                    date.setMonth(date.getMonth() - 2);
+                                    picker.$emit('pick', date);
+                                }
+                            },
+                            {
+                                text: '六个月前',
+                                onClick(picker)
+                                {
+                                    const date = new Date();
+                                    date.setMonth(date.getMonth() - 6);
+                                    picker.$emit('pick', date);
+                                }
+                            },
+                            {
+                                text: '一年前',
+                                onClick(picker)
+                                {
+                                    const date = new Date();
+                                    date.setMonth(date.getMonth() - 12);
+                                    picker.$emit('pick', date);
+                                }
+                            }
+                        ]
+                },
+
+        },
+        methods: {
+            change: function (value)
+            {
+                console.log(value)
+            }
+        },
+        mounted()
+        {
+
+        }
+    })
+</script>
+</body>
+</html>
